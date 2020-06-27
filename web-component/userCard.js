@@ -5,14 +5,17 @@ template.innerHTML = `
       color: #f0f0f0;
     }
 
+    h3, p {
+      margin: .5rem 0;
+    }
+
     .user-card {
-      font-family: Arial, Helvetica, sans-serif;
       background: #000;
-      width: 500px;
+      width: 28rem;
       display: grid;
       grid-template-columns: 1fr 2fr;
-      grid-gap: 10px;
-      margin-bottom: 10px;
+      grid-gap: 1rem;
+      margin: .5rem;
       border-bottom: 5px solid green;
       color: #cacaca;
     }
@@ -28,6 +31,10 @@ template.innerHTML = `
       border: 0;
       padding: 0;
     }
+
+    .user-card .info {
+      display: none;
+    }
   </style>
 
   <div class="user-card">
@@ -38,7 +45,7 @@ template.innerHTML = `
         <p><slot name="email" /></p>
         <p><slot name="phone" /></p>
       </div>
-      <button id="toggle-info">Hide Info</button>
+      <button id="toggle-info">Show Info</button>
     </div>
   </div>
 `;
@@ -47,7 +54,7 @@ class UserCard extends HTMLElement {
   constructor() {
     super();
 
-    this.showInfo = true;
+    this.showInfo = false;
 
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
